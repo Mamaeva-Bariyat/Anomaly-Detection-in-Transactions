@@ -13,4 +13,30 @@
 - Gender: пол владельца счета.
 - Income: доход владельца счета.
 - Account_Type: тип счета (например, личный, деловой).
-# Посмотрим на распределение количества транзакций в данных:
+# посмотрим на распределение количества транзакций в данных:
+![distribution_of_transaction_amount](https://github.com/Mamaeva-Bariyat/Anomaly-Detection-in-Transactions/blob/main/images/distribution_of_transaction_amount.png)<p>
+# распределение сумм транзакций по типу счета: <p>
+![Transaction Amount by Account Type.png](https://github.com/Mamaeva-Bariyat/Anomaly-Detection-in-Transactions/blob/main/images/Transaction%20Amount%20by%20Account%20Type.png)<p>
+# средняя сумма транзакции по возрасту:
+![Average Transaction Amount vs. Age.png](https://github.com/Mamaeva-Bariyat/Anomaly-Detection-in-Transactions/blob/main/images/Average%20Transaction%20Amount%20vs.%20Age.png)<p>
+Разницы в средней сумме транзакции по возрасту нет <p>
+# количество транзакций по дням недели:
+![Count of Transactions by Day of the Week.png](https://github.com/Mamaeva-Bariyat/Anomaly-Detection-in-Transactions/blob/main/images/Count%20of%20Transactions%20by%20Day%20of%20the%20Week.png)
+# корреляция между всеми столбцами данных:
+![Correlation Heatmap.png](https://github.com/Mamaeva-Bariyat/Anomaly-Detection-in-Transactions/blob/main/images/Correlation%20Heatmap.png)
+# визуализация аномалий в данных:
+![Anomalies in Transaction Amount.png](https://github.com/Mamaeva-Bariyat/Anomaly-Detection-in-Transactions/blob/main/images/Anomalies%20in%20Transaction%20Amount.png)
+# Modeling <p>
+model = IsolationForest(contamination=0.02, random_state=42) <p>
+Отчет о производительности <p>
+        precision    recall  f1-score   support
+
+      Normal       1.00      1.00      1.00       196
+     Anomaly       1.00      1.00      1.00         4
+
+    accuracy                           1.00       200
+    macro avg       1.00      1.00     1.00       200
+    weighted avg    1.00      1.00     1.00       200 <p>
+    
+# Прогноз пользователя <p>
+создан скрпит, который принимает пользовательский ввод для трех признаков и возвращает, является ли транзакция нормальной или аномальной.
