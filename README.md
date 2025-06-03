@@ -39,4 +39,26 @@ model = IsolationForest(contamination=0.02, random_state=42) <p>
     weighted avg    1.00      1.00     1.00       200 <p>
     
 # Прогноз пользователя <p>
-создан скрпит, который принимает пользовательский ввод для трех признаков и возвращает, является ли транзакция нормальной или аномальной.
+создан скрпит, который принимает пользовательский ввод для трех признаков и возвращает, является ли транзакция нормальной или аномальной.<p>
+
+relevant_features = ['Transaction_Amount', 'Average_Transaction_Amount', 'Frequency_of_Transactions']
+
+
+user_inputs = []<p>
+for feature in relevant_features:<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_input = float(input(f"Enter the value for '{feature}': "))<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_inputs.append(user_input)<p>
+
+user_df = pd.DataFrame([user_inputs], columns=relevant_features)<p>
+
+
+user_anomaly_pred = model.predict(user_df)<p>
+
+user_anomaly_pred_binary = 1 if user_anomaly_pred == -1 else 0<p>
+
+
+if user_anomaly_pred_binary == 1:<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Anomaly detected: This transaction is flagged as an anomaly.")<p>
+else:<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("No anomaly detected: This transaction is normal.")<p>
+
