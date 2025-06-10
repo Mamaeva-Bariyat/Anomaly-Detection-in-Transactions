@@ -27,7 +27,9 @@
 # визуализация аномалий в данных:
 ![Anomalies in Transaction Amount.png](https://github.com/Mamaeva-Bariyat/Anomaly-Detection-in-Transactions/blob/main/images/Anomalies%20in%20Transaction%20Amount.png)
 # Modeling <p>
-model = IsolationForest(contamination=0.02, random_state=42) <p>
+```
+model = IsolationForest(contamination=0.02, random_state=42)
+```
 Отчет о производительности <p>
         precision    recall  f1-score   support
 
@@ -36,29 +38,30 @@ model = IsolationForest(contamination=0.02, random_state=42) <p>
 
     accuracy                           1.00       200
     macro avg       1.00      1.00     1.00       200
-    weighted avg    1.00      1.00     1.00       200 <p>
+    weighted avg    1.00      1.00     1.00       200 
     
 # Прогноз пользователя <p>
 создан скрпит, который принимает пользовательский ввод для трех признаков и возвращает, является ли транзакция нормальной или аномальной.<p>
 
+```
 relevant_features = ['Transaction_Amount', 'Average_Transaction_Amount', 'Frequency_of_Transactions']
 
+user_inputs = []
 
-user_inputs = []<p>
-for feature in relevant_features:<p>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_input = float(input(f"Enter the value for '{feature}': "))<p>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_inputs.append(user_input)<p>
+for feature in relevant_features:
+   user_input = float(input(f"Enter the value for '{feature}': "))
+   user_inputs.append(user_input)<p>
 
-user_df = pd.DataFrame([user_inputs], columns=relevant_features)<p>
-
-
-user_anomaly_pred = model.predict(user_df)<p>
-
-user_anomaly_pred_binary = 1 if user_anomaly_pred == -1 else 0<p>
+user_df = pd.DataFrame([user_inputs], columns=relevant_features)
 
 
-if user_anomaly_pred_binary == 1:<p>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Anomaly detected: This transaction is flagged as an anomaly.")<p>
-else:<p>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("No anomaly detected: This transaction is normal.")<p>
+user_anomaly_pred = model.predict(user_df)
+
+user_anomaly_pred_binary = 1 if user_anomaly_pred == -1 else 0
+
+
+if user_anomaly_pred_binary == 1:
+   print("Anomaly detected: This transaction is flagged as an anomaly.")
+else:
+   print("No anomaly detected: This transaction is normal.")
 
